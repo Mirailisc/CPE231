@@ -1,5 +1,3 @@
-// Practice 1 : Combination Odd and Even number
-
 #include <iostream>
 #include <vector>
 
@@ -26,15 +24,31 @@ void findCombinations(int lastNum, int target, int start, vector<int> &currentCo
         return;
     }
 
+    // Find the combinations
     for (int i = start; i <= lastNum; i++)
     {
         if (i > target)
             break;
 
         currentCombination.push_back(i);
+
+        cout << "i: " << i << endl;
+        cout << "target: " << target << endl;
+        cout << "start: " << start << endl;
+
+        cout << "Combinations: " << endl;
+        // Print combinations
+        for (int num : currentCombination)
+        {
+            cout << "| " << num << " | ";
+        }
+        cout << endl;
+
         findCombinations(lastNum, target - i, i + 1, currentCombination, totalEvenCount, totalOddCount);
         currentCombination.pop_back();
     }
+
+    cout << endl;
 }
 
 int main()
@@ -52,7 +66,9 @@ int main()
 
     findCombinations(lastNum, target, 1, currentCombination, totalEvenCount, totalOddCount);
 
-    cout << totalEvenCount << totalOddCount << endl;
+    cout << "Answers: " << endl;
+    cout << "Even: " << totalEvenCount << endl
+         << "Odd: " << totalOddCount << endl;
 
     return 0;
 }
