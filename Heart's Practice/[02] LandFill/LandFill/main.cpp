@@ -75,42 +75,6 @@ int MinimumRoughLandFill(vector<int> unadj_land, vector<int> lmr_expand)
     return minimizer;
 }
 
-// Knapsack-like DP solution to minimize roughness ??? have problem
-int MinimumRoughLandFill_knapsack(vector<int> unadj_land, vector<int> lmr_expand)
-{
-    int n = unadj_land.size();
-    int m = lmr_expand.size();
-    int bound = n - m + 1;
-
-    vector<vector<int>> dp(bound + 1, vector<int>(bound + 1, INT_MAX));
-
-    dp[0][0] = rough(unadj_land);
-
-    for (int i = 1; i <= bound; i++)
-    {
-        for (int j = 0; j <= i; j++)
-        {
-            // If we don't place lmr_expand at this position
-            dp[i][j] = min(dp[i][j], dp[i - 1][j]);
-
-            // If we place lmr_expand at this position
-            if (j > 0)
-            {
-                vector<int> new_land_fill = MergeLand(i - 1, lmr_expand, unadj_land);
-                dp[i][j] = min(dp[i][j], rough(new_land_fill));
-            }
-        }
-    }
-
-    int minimizer = INT_MAX;
-    for (int j = 0; j <= bound; j++)
-    {
-        minimizer = min(minimizer, dp[bound][j]);
-    }
-
-    return minimizer;
-}
-
 int main()
 {
     int n;
@@ -122,22 +86,6 @@ int main()
     for (int i = 0; i < 3; i++)
         cin >> lmr[i];
     vector<int> lmr_add = lmr_expand(lmr);
-    /*for (auto j : lmr_add){
-        cout << j << " ";
-    }
-    cout << endl;
-
-    vector<int> newX = MergeLand(0,lmr_add,unadj_land);
-    for (auto j : newX){
-        cout << j << " ";
-    }
-    cout << endl;
-
-    newX = MergeLand(0,lmr_add,newX);
-    for (auto j : newX){
-        cout << j << " ";
-    }
-    cout << endl;*/
 
     cout << MinimumRoughLandFill(unadj_land, lmr_add) << endl;
     return 0;
