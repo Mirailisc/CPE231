@@ -6,6 +6,7 @@
 
 using namespace std;
 
+// Linked List 
 struct vertex
 {
     typedef pair<int, vertex *> ve;
@@ -16,13 +17,13 @@ struct vertex
 
 class graph
 {
-public:
-    typedef map<string, vertex *> vmap;
-    vmap work;
-    vector<string> vertex_all;
-    void addVertex(const string &);
-    void addEdge(const string &, const string &, double cost);
-    int getCost(const string &, const string &);
+    public:
+        typedef map<string, vertex *> vmap;
+        vmap work;
+        vector<string> vertex_all;
+        void addVertex(const string &);
+        void addEdge(const string &, const string &, double cost);
+        int getCost(const string &, const string &);
 };
 
 void graph::addVertex(const string &name)
@@ -99,7 +100,9 @@ int main()
     int country_without_starter, all_path_undir, cost;
 
     cin >> country_without_starter >> all_path_undir;
+
     string c1, c2;
+
     for (int i = 0; i < all_path_undir; i++)
     {
         cin >> c1 >> c2 >> cost;
@@ -107,9 +110,12 @@ int main()
     }
 
     int maximizer_cost = max_cost(Path, Best_Path);
+
     for (auto p : Best_Path)
         cout << p << " ";
+
     cout << endl
          << maximizer_cost << endl;
+
     return 0;
 }

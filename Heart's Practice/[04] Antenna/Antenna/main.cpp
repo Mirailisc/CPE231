@@ -15,8 +15,8 @@ float eff(pair<float, float> p1, pair<float, float> p2)
 float mean(vector<float> eff_list)
 {
     if (eff_list.empty())
-        return 0.0;                                             // accumulate(eff_list.begin(),eff_list.end(),0.0)
-    return (accumulate(eff_list.begin(), eff_list.end(), 0.0)); // / eff_list.size()
+        return 0.0; // accumulate(eff_list.begin(),eff_list.end(),0.0)
+    return (accumulate(eff_list.begin(), eff_list.end(), 0.0)) / eff_list.size();
 }
 
 pair<int, int> Highest_eff_pair(vector<pair<int, int>> p_list)

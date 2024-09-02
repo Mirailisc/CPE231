@@ -8,12 +8,12 @@ typedef struct stu
 {
     string name;
     int score;
-    int pri;
+    int priority;
 } stu;
 
-vector<stu> selection_sort_stu(vector<stu> unsort, int n)
+void selection_sort_stu(vector<stu> unsort, int n)
 {
-    for (int i = 0; i < n - 2; i++)
+    for (int i = 0; i < n - 2; i++) // Selection Sort
     {
         int con = i;
         for (int j = i + 1; j < n - 1; j++)
@@ -24,28 +24,38 @@ vector<stu> selection_sort_stu(vector<stu> unsort, int n)
             }
             else if (unsort[j].score == unsort[con].score)
             {
-                if (unsort[j].pri < unsort[con].pri)
+                if (unsort[j].priority < unsort[con].priority)
                     con = j;
             }
         }
-        swap(unsort[i], unsort[con]);
+        swap(unsort[i], unsort[con]); // required <algorithm>
     }
-    return unsort;
+    // return unsort;
 }
 
 int main()
 {
     int n;
     cin >> n;
+    
     vector<stu> student_list(n), sort_score_student(n);
-    map<int, int> pri;
+    
+    // map<int, int> priority; // priority[key] = 0
+    
     for (int i = 0; i < n; i++)
     {
         cin >> student_list[i].name >> student_list[i].score;
-        student_list[i].pri = pri[student_list[i].score]++;
+        student_list[i].priority = i;
+        // student_list[i].priority = priority[student_list[i].score]++;
+        // 1040 70 (0)
+        // ... (...)
+        // 3441 70 (1)
     }
-    sort_score_student = selection_sort_stu(student_list, n);
+    
+    selection_sort_stu(student_list, n);
+    
     for (auto s : sort_score_student)
         cout << s.name << endl;
+    
     return 0;
 }

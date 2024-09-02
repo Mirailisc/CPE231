@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 /*
     Practice 3 : FakeBeads
@@ -47,11 +48,18 @@ int main()
         beads.push_back(bead);
     }
 
+    int min_diff = beads[1] - beads[0];
+    for (int i = 1; i < totalBeads - 1; i++)
+    {
+        min_diff = min(min_diff, beads[i + 1] - beads[i]);
+    }
+
+    int correct_position = beads[0];
     for (int i = 0; i < totalBeads; i++)
     {
-        int diff = beads[i] - i - 1;
-
+        int diff = beads[i] - correct_position;
         result.push_back(diff);
+        correct_position += min_diff;
     }
 
     for (int i = 0; i < totalBeads; i++)
