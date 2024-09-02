@@ -45,7 +45,7 @@ void findCombinations(int lastNum, int target, int start, vector<int> &currentCo
         cout << endl;
 
         findCombinations(lastNum, target - i, i + 1, currentCombination, totalEvenCount, totalOddCount);
-        currentCombination.pop_back();
+        currentCombination.pop_back(); // Backtracking function
     }
 
     cout << endl;
@@ -72,3 +72,24 @@ int main()
 
     return 0;
 }
+
+// Given Input : 4 (lastNum) 5 (target)
+
+// start = 1, target = 5, lastNum = 4 : 5 - 1 = 4 -> { 1 }
+// start = 2, target = 4, lastNum = 4 : 4 - 2 = 2 -> { 1, 2 }
+// start = 3, target = 2, lastNum = 4 : 3 > 2 -> Pop (2) -> { 1 }
+// start = 3, target = 4, lastNum = 4 : 4 - 3 = 1 -> { 1, 3 }
+// start = 4, target = 0, lastNum = 4 : 4 > 0 -> Pop (3) -> { 1 }
+// start = 4, target = 4, lastNum = 4 : 4 - 4 = 0 -> { 1, 4 }
+// หาเหึ้ยอะไรก็ออกมา
+
+// start = 2, target = 5, lastNum = 4 : 5 - 2 = 3 -> { 2 }
+// start = 3, target = 3, lastNum = 4 : 3 - 3 = 0 -> { 2, 3 }
+// หาเหึ้ยอะไรก็ออกมา
+
+// start = 3, target = 5, lastNum = 4 : 5 - 3 = 2 -> { 3 }
+// start = 4, target = 1, lastNum = 4 : 1 > 1 -> Pop (3) -> { 3 }
+// start = 4, target = 5, lastNum = 4 : 5 - 4 = 1 -> { 3, 4 }
+// start = 5, target = 0, lastNum = 4 : 0 > 0 -> Pop (4) -> { 3 }
+// start = 5, target = 5, lastNum = 4 : 5 - 5 = 0 -> { 3, 5 }
+// หาเหึ้ยอะไรก็ออกมา

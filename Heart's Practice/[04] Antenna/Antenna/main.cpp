@@ -21,20 +21,24 @@ float mean(vector<float> eff_list)
 
 pair<int, int> Highest_eff_pair(vector<pair<int, int>> p_list)
 {
-    int n = p_list.size();
+    int length = p_list.size();
+
     float low_mean = numeric_limits<float>::max();
+
     vector<float> eff_list;
-    pair<int, int> highest = {-1, -1};
+    pair<int, int> highest(-1, -1);
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < length; i++)
     {
-        eff_list = {};
+        eff_list.clear();
 
-        for (int j = 0; j < n; j++)
+        for (int j = 0; j < length; j++)
+        {
             eff_list.push_back(eff(p_list[i], p_list[j]));
+        }
 
         int eff_mean = mean(eff_list);
-        
+
         if (low_mean >= eff_mean)
         {
             highest = p_list[i];
@@ -47,14 +51,14 @@ pair<int, int> Highest_eff_pair(vector<pair<int, int>> p_list)
 int main()
 {
     int n;
-    
+
     cin >> n;
 
     vector<pair<int, int>> p_list(n);
 
     for (int i = 0; i < n; i++)
         cin >> p_list[i].first >> p_list[i].second;
-        
+
     pair<int, int> highest = Highest_eff_pair(p_list);
 
     cout << highest.first << " " << highest.second << endl;
