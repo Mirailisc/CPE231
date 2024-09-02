@@ -1,24 +1,26 @@
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
 
 float highest_profit(vector<vector<float>> list_cost, int n)
 {
-    vector<int> try_assgin;
+    vector<int> try_assign;
     for (int i = 0; i < n; i++)
-        try_assgin.push_back(i);
+        try_assign.push_back(i);
     float maxi_cost = 0;
     do
     {
         float cost = 0;
         int i = 0;
-        for (auto item : try_assgin)
+        for (auto item : try_assign)
         {
             cost += list_cost[i++][item];
         }
         if (cost > maxi_cost)
             maxi_cost = cost;
-    } while (next_permutation(try_assgin.begin(), try_assgin.end()));
+    } while (next_permutation(try_assign.begin(), try_assign.end()));
     return maxi_cost;
 }
 
