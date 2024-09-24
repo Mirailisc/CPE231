@@ -28,7 +28,6 @@ class graph
 
 void graph::addVertex(const string &name)
 {
-    // vmap::iterator itr = work.find(name);
     if (work.find(name) == work.end())
     {
         vertex *v = new vertex(name);
@@ -45,7 +44,7 @@ void graph::addEdge(const string &form, const string &to, double cost)
     addVertex(to);
     vertex *f = work.find(form)->second;
     vertex *t = work.find(to)->second;
-    // pair<int,vertex*> edge = make_pair(cost,t);
+
     f->adj.push_back(make_pair(cost, t)); // use it only if direct
     t->adj.push_back(make_pair(cost, f));
 }
