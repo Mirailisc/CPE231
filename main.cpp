@@ -7,38 +7,34 @@ int main()
 {
     int n;
     cin >> n;
-    vector<int> x(n);
-    for (int i = 0; i < n; i++)
-    {
-        cin >> x[i];
-    }
 
-    vector<int> dp_true(n, 1), dp_false(n, 1);
+    vector<int> seq(n);
+    for (int &x : seq)
+        cin >> x;
 
-    for (int i = 1; i < n; i++)
+    vector<int> up(n, 1), down(n, 1);
+
+    for (int i = 1; i < n; ++i)
     {
-        for (int j = 0; j < i; j++)
+        for (int j = 0; j < i; ++j)
         {
-            if (x[i] > x[j])
+            if (seq[i] > seq[j])
             {
-                dp_true[i] = max(dp_true[i], dp_false[j] + 1);
+                up[i] = max(up[i], down[j] + 1);
             }
-            else if (x[i] < x[j])
+            else if (seq[i] < seq[j])
             {
-                dp_false[i] = max(dp_false[i], dp_true[j] + 1);
+                down[i] = max(down[i], up[j] + 1);
             }
         }
     }
 
-    for (int i = 0; i < n; i++)
-    {
-        cout << dp_true[i] << (i == n - 1 ? "\n" : " ");
-    }
-
-    for (int i = 0; i < n; i++)
-    {
-        cout << dp_false[i] << (i == n - 1 ? "\n" : " ");
-    }
+    for (int x : up)
+        cout << x << " ";
+    cout << endl;
+    for (int x : down)
+        cout << x << " ";
+    cout << endl;
 
     return 0;
 }

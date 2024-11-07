@@ -1,23 +1,21 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
 int main()
 {
     int n;
     cin >> n;
+
     vector<int> x(n);
-    for (int i = 0; i < n; i++)
-    {
+    for (int i = 0; i < n; ++i)
         cin >> x[i];
-    }
 
     vector<int> dp_true(n, 1), dp_false(n, 1);
 
-    for (int i = 1; i < n; i++)
+    for (int i = 1; i < n; ++i)
     {
-        for (int j = 0; j < i; j++)
+        for (int j = 0; j < i; ++j)
         {
             if (x[i] > x[j])
             {
@@ -30,15 +28,13 @@ int main()
         }
     }
 
-    for (int i = 0; i < n; i++)
-    {
-        cout << dp_true[i] << (i == n - 1 ? "\n" : " ");
-    }
+    for (int i : dp_true)
+        cout << i << " ";
+    cout << endl;
 
-    for (int i = 0; i < n; i++)
-    {
-        cout << dp_false[i] << (i == n - 1 ? "\n" : " ");
-    }
+    for (int i : dp_false)
+        cout << i << " ";
+    cout << endl;
 
     return 0;
 }
